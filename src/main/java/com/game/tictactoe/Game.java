@@ -4,22 +4,14 @@ import com.game.tictactoe.constants.GameConstants;
 
 public class Game {
 
-	Player player = null;
-	static GameBoard gameBoard;
-
-	public static GameBoard getGameBoard() {
-		return gameBoard;
-	}
-
-	int sizeEneterd = 0;
+	private Player player;
+	private GameBoard gameBoard;
 
 	public Game(int size) {
-		sizeEneterd = size;
 		gameBoard.setSizeOfSquare(size);
 		gameBoard.setSizeOfBoard(size + size - 1);// Size of the game board being set dynamically (n+n-1)
 		gameBoard = GameBoard.getGameBoard();
 		showOnStart();
-
 	}
 
 	public void showOnStart() {

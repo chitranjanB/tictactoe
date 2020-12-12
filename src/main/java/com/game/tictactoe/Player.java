@@ -9,22 +9,18 @@ import com.game.tictactoe.constants.GameConstants;
 public class Player {
 
 	private GameBoard gameBoard;
-	private String player;
-
-//	public Player() {
-//	}
+	private String playerName;
 
 	public Player(GameBoard gameBoard) {
 		this.gameBoard = gameBoard;
-
 	}
 
 	public void move(String p) {
 		if (p == GameConstants.PLAYR_X)
-			player = "X";
+			playerName = "X";
 		else
-			player = "O";
-		System.out.println("Hi player " + player + ", enter your cell:");
+			playerName = "O";
+		System.out.println("Hi player " + playerName + ", enter your cell:");
 
 		while (true) {
 			int x = 1;
@@ -43,26 +39,14 @@ public class Player {
 				}
 			} while (x == 1);
 
-			if (row > 0 && row <= gameBoard.getSizeOfSquare() && col > 0 && col <= gameBoard.getSizeOfSquare()) // if
-																												// row
-																												// or
-																												// col
-																												// is
-																												// not >
-																												// 0,
-																												// input
-																												// 0
-																												// works.
-			{
+			if (row > 0 && row <= gameBoard.getSizeOfSquare() && col > 0 && col <= gameBoard.getSizeOfSquare()) {
 
 				if (!gameBoard.fillSymbol(row, col, p)) {
-					System.out.println("This cell is already filled. Please re enter the cell: "); // write if condition
-																									// to check alreday
-																									// filled cell
+					System.out.println("This cell is already filled. Please re enter the cell: ");
 				} else {
 					gameBoard.fillSymbol(row, col, p);
 					System.out.println("");
-					System.out.println("player " + player + ":");
+					System.out.println("player " + playerName + ":");
 					break;
 				}
 			} else {
