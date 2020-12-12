@@ -1,5 +1,7 @@
 package com.game.tictactoe;
 
+import com.game.tictactoe.constants.Cons;
+
 public class GameBoard {
 
 	private int sizeOfBoard = 0;
@@ -36,19 +38,19 @@ public class GameBoard {
 	}
 
 	public boolean fillSymbol(int row, int col, String p) {
-		char symbol = ' ';
-		if (p.equals("X"))
-			symbol = 'X';
+		char symbol = Cons.CHAR_SPACE;
+		if (p.equals(Cons.PLAYER_X))
+			symbol = Cons.CHAR_X;
 
-		else if (p.equals("O"))
-			symbol = 'O';
+		else if (p.equals(Cons.PLAYER_O))
+			symbol = Cons.CHAR_O;
 
 		if (row % 2 != 0)
-			row = (row - 1) * 2; // If row or col is odd then there is a design char already. n=nxn-1 points to
-									// the empty cell.
+			row = (row - 1) * 2;
+
 		if (col % 2 != 0)
 			col = (col - 1) * 2;
-		if (board[row][col] == 'X' || board[row][col] == 'O')
+		if (board[row][col] == Cons.CHAR_X || board[row][col] == Cons.CHAR_O)
 			return false;
 		else
 			board[row][col] = symbol;

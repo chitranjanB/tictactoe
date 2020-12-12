@@ -13,14 +13,14 @@ public class Game {
 			for (int j = 0; j < sizeOfBoard; j++) {
 				if (i % 2 == 0) {
 					if (j % 2 == 0)
-						board[i][j] = ' ';
+						board[i][j] = Cons.SEPARATOR_SPACE;
 					else
-						board[i][j] = '|';
+						board[i][j] = Cons.SEPARATOR_PIPE;
 				} else {
 					if (j % 2 == 0)
-						board[i][j] = '-';
+						board[i][j] = Cons.SEPARATOR_MINUS;
 					else
-						board[i][j] = '+';
+						board[i][j] = Cons.SEPARATOR_PLUS;
 				}
 
 			}
@@ -29,35 +29,29 @@ public class Game {
 	}
 
 	public void startGame() {
-
-		System.out.println("Game Board Creation...");
-		System.out.println();
 		gameBoard.printGameBoard();
-		System.out.println("Board Created.");
-		System.out.println("The game will start with player X");
-		System.out.println();
+		System.out.println(Cons.MSG_BOARD_CREATION_SUCCESS);
 
 		while (true) {
 			Player player = new Player(gameBoard);
 			String result;
-			player.move("X");
+			player.move(Cons.PLAYER_X);
 			result = player.computeWinner();
 			if (result.length() > 0) {
 				System.out.println();
 				gameBoard.printGameBoard();
 				System.out.println();
-				System.out.println(Cons.X_WINS);
+				System.out.println(Cons.MSG_X_WINS);
 				break;
 			}
-			player.move("O");
+			player.move(Cons.PLAYER_O);
 			result = player.computeWinner();
 			if (result.length() > 0) {
 				System.out.println();
 				gameBoard.printGameBoard();
 				System.out.println();
-				System.out.println(Cons.O_WINS);
+				System.out.println(Cons.MSG_O_WINS);
 				break;
-
 			}
 		}
 

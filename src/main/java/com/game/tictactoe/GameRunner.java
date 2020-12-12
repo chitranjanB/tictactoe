@@ -12,6 +12,7 @@ public class GameRunner {
 		Game game = new Game();
 		game.createGameBoard(size);
 		game.startGame();
+		scan.close();
 	}
 
 }

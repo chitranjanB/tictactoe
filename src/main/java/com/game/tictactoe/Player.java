@@ -16,10 +16,11 @@ public class Player {
 	}
 
 	public void move(String p) {
-		if (p == Cons.PLAYR_X)
+		if (p == Cons.PLAYER_X) {
 			playerName = "X";
-		else
+		} else {
 			playerName = "O";
+		}
 		System.out.println("Hi player " + playerName + ", enter your cell:");
 
 		while (true) {
@@ -121,7 +122,7 @@ public class Player {
 			}
 		}
 		if (positionsFilled == (gameBoard.getSizeOfSquare() * gameBoard.getSizeOfSquare()) && result.isEmpty())
-			result = Cons.NONE_WINS;
+			result = Cons.MSG_NONE_WINS;
 
 		return result;
 	}
