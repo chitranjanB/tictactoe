@@ -2,69 +2,40 @@ package com.game.tictactoe;
 
 public class GameBoard {
 
-	private static int sizeOfBoard = 0;
-	private static int sizeOfSquare = 0;
+	private int sizeOfBoard = 0;
+	private int sizeOfSquare = 0;
+	private char[][] board = null;
 
-	private static char[][] board = null;
-	private static GameBoard instance = null;
-
-	private GameBoard() {
-
+	public GameBoard(int sizeOfBoard, int sizeOfSquare) {
+		this.sizeOfBoard = sizeOfBoard;
+		this.sizeOfSquare = sizeOfSquare;
 	}
 
-	public static GameBoard getGameBoard() {
-		if (instance == null) {
-			instance = new GameBoard();
-		}
-		GameBoard.createGameBoard();
-		return instance;
+	public char[][] getBoard() {
+		return this.board;
 	}
 
-	public static char[][] getBoard() {
-		return board;
+	public void setBoard(char[][] board) {
+		this.board = board;
 	}
 
-	public static void setBoard(char[][] board) {
-		GameBoard.board = board;
+	public int getSizeOfSquare() {
+		return this.sizeOfSquare;
 	}
 
-	public static int getSizeOfSquare() {
-		return sizeOfSquare;
+	public void setSizeOfSquare(int sizeOfSquare) {
+		this.sizeOfSquare = sizeOfSquare;
 	}
 
-	public static void setSizeOfSquare(int sizeOfSquare) {
-		GameBoard.sizeOfSquare = sizeOfSquare;
+	public int getSizeOfBoard() {
+		return this.sizeOfBoard;
 	}
 
-	public static int getSizeOfBoard() {
-		return sizeOfBoard;
+	public void setSizeOfBoard(int sizeOfBoard) {
+		this.sizeOfBoard = sizeOfBoard;
 	}
 
-	public static void setSizeOfBoard(int sizeOfBoard) {
-		GameBoard.sizeOfBoard = sizeOfBoard;
-	}
-
-	private static void createGameBoard() {
-		board = new char[sizeOfBoard][sizeOfBoard];
-		for (int i = 0; i < sizeOfBoard; i++) {
-			for (int j = 0; j < sizeOfBoard; j++) {
-				if (i % 2 == 0) {
-					if (j % 2 == 0)
-						board[i][j] = ' ';
-					else
-						board[i][j] = '|';
-				} else {
-					if (j % 2 == 0)
-						board[i][j] = '-';
-					else
-						board[i][j] = '+';
-				}
-
-			}
-		}
-	}
-
-	public static boolean fillSymbol(int row, int col, String p) {
+	public boolean fillSymbol(int row, int col, String p) {
 		char symbol = ' ';
 		if (p.equals("X"))
 			symbol = 'X';

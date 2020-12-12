@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-import com.game.tictactoe.constants.GameConstants;
+import com.game.tictactoe.constants.Cons;
 
 public class Player {
 
@@ -16,7 +16,7 @@ public class Player {
 	}
 
 	public void move(String p) {
-		if (p == GameConstants.PLAYR_X)
+		if (p == Cons.PLAYR_X)
 			playerName = "X";
 		else
 			playerName = "O";
@@ -120,8 +120,8 @@ public class Player {
 					positionsFilled += 1;
 			}
 		}
-		if (positionsFilled == (GameBoard.getSizeOfSquare() * GameBoard.getSizeOfSquare()) && result.isEmpty())
-			result = GameConstants.NONE_WINS;
+		if (positionsFilled == (gameBoard.getSizeOfSquare() * gameBoard.getSizeOfSquare()) && result.isEmpty())
+			result = Cons.NONE_WINS;
 
 		return result;
 	}

@@ -9,7 +9,9 @@ public class GameRunner {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Please enter the size of the board:");
 		int size = scan.nextInt();
-		Game game = new Game(size);
+		Game game = new Game();
+		game.createGameBoard(size);
+		game.startGame();
 	}
 
 }
