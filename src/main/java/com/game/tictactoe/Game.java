@@ -35,7 +35,7 @@ public class Game {
 
 	public void startGame() {
 		while (true) {
-			player = new Player();
+			player = new Player(gameBoard);
 			String result;
 			player.move("X");
 			result = player.computeWinner();

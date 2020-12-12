@@ -8,8 +8,16 @@ import com.game.tictactoe.constants.GameConstants;
 
 public class Player {
 
-	GameBoard gameBoard = Game.getGameBoard();
-	String player;
+	private GameBoard gameBoard;
+	private String player;
+
+//	public Player() {
+//	}
+
+	public Player(GameBoard gameBoard) {
+		this.gameBoard = gameBoard;
+
+	}
 
 	public void move(String p) {
 		if (p == GameConstants.PLAYR_X)
