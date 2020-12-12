@@ -40,7 +40,6 @@ public class Game {
 			if (result.length() > 0) {
 				System.out.println();
 				gameBoard.printGameBoard();
-				System.out.println();
 				System.out.println(Cons.MSG_X_WINS);
 				break;
 			}
@@ -49,7 +48,6 @@ public class Game {
 			if (result.length() > 0) {
 				System.out.println();
 				gameBoard.printGameBoard();
-				System.out.println();
 				System.out.println(Cons.MSG_O_WINS);
 				break;
 			}
