@@ -1,4 +1,4 @@
-package com.game.tictactoe;
+package com.game.tictactoe.exception;
 
 public class GameException extends RuntimeException {
 

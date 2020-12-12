@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.game.tictactoe.constants.Cons;
+import com.game.tictactoe.exception.GameException;
 
 public class Judge {
 
@@ -18,10 +19,10 @@ public class Judge {
 		int positionsFilled = 0;
 		boolean flag = false;
 		char[][] gameGrid = gameBoard.getGameGrid();
-		Set winningRow = new HashSet<>();
-		Set winningCol = new HashSet<>();
-		Set winningDiagonal = new HashSet<>();
-		Set winningCrossDiagonal = new HashSet<>();
+		Set<Character> winningRow = new HashSet<>();
+		Set<Character> winningCol = new HashSet<>();
+		Set<Character> winningDiagonal = new HashSet<>();
+		Set<Character> winningCrossDiagonal = new HashSet<>();
 		for (int i = 0; i <= gameBoard.getSizeOfBoard(); i += 2) {
 			winningRow.clear();
 			winningCol.clear();

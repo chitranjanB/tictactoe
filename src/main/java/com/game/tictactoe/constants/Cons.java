@@ -19,7 +19,7 @@ public class Cons {
 	/**
 	 * Game constants
 	 */
-	public static final String MSG_INITAL_PROMPT = "Please enter the size of the board:";
+	public static final String MSG_INITIAL_PROMPT = "Please enter the size of the board:";
 	public static final String MSG_BOARD_CREATION_SUCCESS = "Board Created.\nThe game will start with player X\n";
 	public static final String MSG_YOUR_MOVE_PROMPT = "Hi player %s, enter your cell:";
 	public static final String MSG_ENTER_ROW_PROMPT = "Enter row:";
