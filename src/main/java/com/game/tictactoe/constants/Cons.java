@@ -1,12 +1,13 @@
 package com.game.tictactoe.constants;
 
+import com.game.tictactoe.Player;
+
 public class Cons {
 
 	/**
 	 * Player constants
 	 */
-	public static final String MSG_X_WINS = "\nPLAYER X WON\n";
-	public static final String MSG_O_WINS = "\nPLAYER O WON\n";
+	public static final String MSG_WINS = "\nPLAYER %s WON\n";
 	public static final String MSG_NONE_WINS = "GAME ENDS WITH A DRAW";
 
 	public static final String PLAYER_X = "X";
@@ -29,7 +30,7 @@ public class Cons {
 	public static final String ERR_POSITION_TAKEN = "This cell is already filled. Please re enter the cell: ";
 	public static final String ERR_INVALID_MOVE = "Please enter both row and column less that size of the board and greater than 0:";
 	public static final String ERR_GAME_STOPPED = "We faced some issue...\n Please restart the game again\n, If issue persist, please contact the Game developer";
-	
+
 	/**
 	 * Board Layouts
 	 */

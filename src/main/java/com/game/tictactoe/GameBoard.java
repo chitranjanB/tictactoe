@@ -6,19 +6,19 @@ public class GameBoard {
 
 	private int sizeOfBoard = 0;
 	private int sizeOfSquare = 0;
-	private char[][] board = null;
+	private char[][] gameGrid = null;
 
 	public GameBoard(int sizeOfBoard, int sizeOfSquare) {
 		this.sizeOfBoard = sizeOfBoard;
 		this.sizeOfSquare = sizeOfSquare;
 	}
 
-	public char[][] getBoard() {
-		return this.board;
+	public char[][] getGameGrid() {
+		return this.gameGrid;
 	}
 
-	public void setBoard(char[][] board) {
-		this.board = board;
+	public void setGameGrid(char[][] board) {
+		this.gameGrid = board;
 	}
 
 	public int getSizeOfSquare() {
@@ -50,7 +50,7 @@ public class GameBoard {
 		if (isPositionAlreadyFilled(row, col)) {
 			return false;
 		} else {
-			board[row][col] = symbol;
+			gameGrid[row][col] = symbol;
 		}
 		return true;
 	}
@@ -79,11 +79,11 @@ public class GameBoard {
 	 * @return
 	 */
 	private boolean isPositionAlreadyFilled(int row, int col) {
-		return board[row][col] == Cons.CHAR_X || board[row][col] == Cons.CHAR_O;
+		return gameGrid[row][col] == Cons.CHAR_X || gameGrid[row][col] == Cons.CHAR_O;
 	}
 
 	public void display() {
-		for (char[] row : board) {
+		for (char[] row : gameGrid) {
 			for (char c : row) {
 				System.out.print(c);
 			}

@@ -1,8 +1,6 @@
 package com.game.tictactoe;
 
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 import com.game.tictactoe.constants.Cons;
 
@@ -11,20 +9,16 @@ public class Player {
 	private GameBoard gameBoard;
 	private String playerName;
 
-	public Player(GameBoard gameBoard) {
+	public Player(String playerName, GameBoard gameBoard) {
+		this.playerName = playerName;
 		this.gameBoard = gameBoard;
 	}
 
-	public void move(String p) {
-		if (p == Cons.PLAYER_X) {
-			playerName = Cons.PLAYER_X;
-		} else {
-			playerName = Cons.PLAYER_O;
-		}
+	public void move() {
 		System.out.println(String.format(Cons.MSG_YOUR_MOVE_PROMPT, playerName));
 
 		while (true) {
-			int x = 1;
+			boolean isStepComplete = false;
 			int row = 0;
 			int col = 0;
 			do {
@@ -34,18 +28,17 @@ public class Player {
 					row = scan.nextInt();
 					System.out.println(Cons.MSG_ENTER_COL_PROMPT);
 					col = scan.nextInt();
-					x = 2;
+					isStepComplete = true;
 				} catch (Exception e) {
 					System.out.println(Cons.ERR_INVALID_TYPE);
 				}
-			} while (x == 1);
+			} while (!isStepComplete);
 
-			if (row > 0 && row <= gameBoard.getSizeOfSquare() && col > 0 && col <= gameBoard.getSizeOfSquare()) {
-
-				if (!gameBoard.fillPlayerSymbolAtPosition(row, col, p)) {
+			if (isMoveInBoardBounds(row, col)) {
+				if (!gameBoard.fillPlayerSymbolAtPosition(row, col, playerName)) {
 					System.out.println(Cons.ERR_POSITION_TAKEN);
 				} else {
-					gameBoard.fillPlayerSymbolAtPosition(row, col, p);
+					gameBoard.fillPlayerSymbolAtPosition(row, col, playerName);
 					System.out.println("");
 					System.out.println("player " + playerName + ":");
 					break;
@@ -57,74 +50,14 @@ public class Player {
 		gameBoard.display();
 	}
 
-	public String checkSet(Set s) {
-		String winner = "";
-		if (s.size() == 1 && !s.contains(Cons.CHAR_SPACE)) {
-			if (s.contains(Cons.CHAR_X))
-				winner = Cons.PLAYER_X;
-			else
-				winner = Cons.PLAYER_O;
-		}
-		return winner;
-
+	public void celebrateVictory() {
+		System.out.println();
+		gameBoard.display();
+		System.out.println(String.format(Cons.MSG_WINS, playerName));
 	}
 
-	public String computeWinner() {
-		String result = "";
-		int positionsFilled = 0;
-		boolean flag = false;
-		char[][] gameGrid = gameBoard.getBoard();
-		Set winningRow = new HashSet<>();
-		Set winningCol = new HashSet<>();
-		Set winningDiagonal = new HashSet<>();
-		Set winningCrossDiagonal = new HashSet<>();
-		for (int i = 0; i <= gameBoard.getSizeOfBoard(); i += 2) {
-			winningRow.clear();
-			winningCol.clear();
-			winningDiagonal.clear();
-			winningCrossDiagonal.clear();
-			for (int j = 0; j <= gameBoard.getSizeOfBoard(); j += 2) {
-				winningRow.add(gameGrid[i][j]);
-			}
-			result = checkSet(winningRow);
-			if (!result.isEmpty())
-				return result;
-
-			for (int j = 0; j <= gameBoard.getSizeOfBoard(); j += 2) {
-				winningCol.add(gameGrid[j][i]);
-			}
-			result = checkSet(winningCol);
-			if (!result.isEmpty())
-				return result;
-			for (int j = 0; j <= gameBoard.getSizeOfBoard(); j += 2) {
-				for (int k = 0; k <= gameBoard.getSizeOfBoard(); k += 2) {
-					if (j == k)
-						winningDiagonal.add(gameGrid[j][k]);
-				}
-			}
-			result = checkSet(winningDiagonal);
-			if (!result.isEmpty())
-				return result;
-
-			for (int j = 0; j <= gameBoard.getSizeOfBoard(); j += 2) {
-				for (int k = 0; k <= gameBoard.getSizeOfBoard(); k += 2) {
-					if ((j + k) == (gameBoard.getSizeOfBoard() - 1))
-						winningCrossDiagonal.add(gameGrid[j][k]);
-				}
-			}
-			result = checkSet(winningCrossDiagonal);
-			if (!result.isEmpty())
-				return result;
-
-			for (int j = 0; j <= gameBoard.getSizeOfBoard(); j += 2) {
-				if (gameGrid[i][j] != Cons.CHAR_SPACE)
-					positionsFilled += 1;
-			}
-		}
-		if (positionsFilled == (gameBoard.getSizeOfSquare() * gameBoard.getSizeOfSquare()) && result.isEmpty())
-			result = Cons.MSG_NONE_WINS;
-
-		return result;
+	private boolean isMoveInBoardBounds(int row, int col) {
+		return row > 0 && row <= gameBoard.getSizeOfSquare() && col > 0 && col <= gameBoard.getSizeOfSquare();
 	}
 
 }

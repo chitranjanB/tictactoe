@@ -6,8 +6,10 @@ public class Game {
 
 	private GameBoard gameBoard;
 
-	public void createGameBoard(int sizeOfBoard) {
-		this.gameBoard = new GameBoard(sizeOfBoard, sizeOfBoard + sizeOfBoard - 1);
+	public void createGameBoard(int size) {
+		int sizeOfBoard = size + size - 1;
+		int sizeOfSquare = size;
+		this.gameBoard = new GameBoard(sizeOfBoard, sizeOfSquare);
 		char[][] board = new char[sizeOfBoard][sizeOfBoard];
 		for (int i = 0; i < sizeOfBoard; i++) {
 			for (int j = 0; j < sizeOfBoard; j++) {
@@ -24,37 +26,29 @@ public class Game {
 						board[i][j] = Cons.SEPARATOR_PLUS;
 					}
 				}
-
 			}
 		}
-		this.gameBoard.setBoard(board);
-	}
-
-	private boolean isEven(int coordinate) {
-		return coordinate % 2 == 0;
+		this.gameBoard.setGameGrid(board);
 	}
 
 	public void startGame() {
 		gameBoard.display();
 		System.out.println(Cons.MSG_BOARD_CREATION_SUCCESS);
 
-		while (true) {
-			Player player = new Player(gameBoard);
+		Player playerX = new Player(Cons.PLAYER_X, this.gameBoard);
+		Player playerO = new Player(Cons.PLAYER_O, this.gameBoard);
+		Judge judge = new Judge(this.gameBoard);
 
-			player.move(Cons.PLAYER_X);
-			String result = player.computeWinner();
-			if (result.length() > 0) {
-				System.out.println();
-				gameBoard.display();
-				System.out.println(Cons.MSG_X_WINS);
+		while (true) {
+			playerX.move();
+			if (judge.isGameComplete()) {
+				playerX.celebrateVictory();
 				break;
 			}
-			player.move(Cons.PLAYER_O);
-			result = player.computeWinner();
-			if (result.length() > 0) {
-				System.out.println();
-				gameBoard.display();
-				System.out.println(Cons.MSG_O_WINS);
+
+			playerO.move();
+			if (judge.isGameComplete()) {
+				playerO.celebrateVictory();
 				break;
 			}
 		}
@@ -62,4 +56,7 @@ public class Game {
 		System.out.println(Cons.MSG_THANKS);
 	}
 
+	private boolean isEven(int coordinate) {
+		return coordinate % 2 == 0;
+	}
 }
