@@ -11,16 +11,18 @@ public class Game {
 		char[][] board = new char[sizeOfBoard][sizeOfBoard];
 		for (int i = 0; i < sizeOfBoard; i++) {
 			for (int j = 0; j < sizeOfBoard; j++) {
-				if (i % 2 == 0) {
-					if (j % 2 == 0)
+				if (isEven(i)) {
+					if (isEven(j)) {
 						board[i][j] = Cons.SEPARATOR_SPACE;
-					else
+					} else {
 						board[i][j] = Cons.SEPARATOR_PIPE;
+					}
 				} else {
-					if (j % 2 == 0)
+					if (isEven(j)) {
 						board[i][j] = Cons.SEPARATOR_MINUS;
-					else
+					} else {
 						board[i][j] = Cons.SEPARATOR_PLUS;
+					}
 				}
 
 			}
@@ -28,18 +30,22 @@ public class Game {
 		this.gameBoard.setBoard(board);
 	}
 
+	private boolean isEven(int coordinate) {
+		return coordinate % 2 == 0;
+	}
+
 	public void startGame() {
-		gameBoard.printGameBoard();
+		gameBoard.display();
 		System.out.println(Cons.MSG_BOARD_CREATION_SUCCESS);
 
 		while (true) {
 			Player player = new Player(gameBoard);
-			String result;
+
 			player.move(Cons.PLAYER_X);
-			result = player.computeWinner();
+			String result = player.computeWinner();
 			if (result.length() > 0) {
 				System.out.println();
-				gameBoard.printGameBoard();
+				gameBoard.display();
 				System.out.println(Cons.MSG_X_WINS);
 				break;
 			}
@@ -47,12 +53,13 @@ public class Game {
 			result = player.computeWinner();
 			if (result.length() > 0) {
 				System.out.println();
-				gameBoard.printGameBoard();
+				gameBoard.display();
 				System.out.println(Cons.MSG_O_WINS);
 				break;
 			}
 		}
 
+		System.out.println(Cons.MSG_THANKS);
 	}
 
 }

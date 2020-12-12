@@ -37,28 +37,52 @@ public class GameBoard {
 		this.sizeOfBoard = sizeOfBoard;
 	}
 
-	public boolean fillSymbol(int row, int col, String p) {
-		char symbol = Cons.CHAR_SPACE;
-		if (p.equals(Cons.PLAYER_X))
-			symbol = Cons.CHAR_X;
+	public boolean fillPlayerSymbolAtPosition(int row, int col, String playerName) {
+		char symbol = fetchPlayerSymbol(playerName);
 
-		else if (p.equals(Cons.PLAYER_O))
-			symbol = Cons.CHAR_O;
-
-		if (row % 2 != 0)
+		if (row % 2 != 0) {
 			row = (row - 1) * 2;
-
-		if (col % 2 != 0)
+		}
+		if (col % 2 != 0) {
 			col = (col - 1) * 2;
-		if (board[row][col] == Cons.CHAR_X || board[row][col] == Cons.CHAR_O)
-			return false;
-		else
-			board[row][col] = symbol;
+		}
 
+		if (isPositionAlreadyFilled(row, col)) {
+			return false;
+		} else {
+			board[row][col] = symbol;
+		}
 		return true;
 	}
 
-	public void printGameBoard() {
+	/**
+	 * Given a playerName it fetch the symbol associated
+	 * 
+	 * @param playerName
+	 * @return
+	 */
+	private char fetchPlayerSymbol(String playerName) {
+		char symbol = Cons.CHAR_SPACE;
+		if (playerName.equals(Cons.PLAYER_X)) {
+			symbol = Cons.CHAR_X;
+		} else if (playerName.equals(Cons.PLAYER_O)) {
+			symbol = Cons.CHAR_O;
+		}
+		return symbol;
+	}
+
+	/**
+	 * Checks if the chosen position is already taken
+	 * 
+	 * @param row
+	 * @param col
+	 * @return
+	 */
+	private boolean isPositionAlreadyFilled(int row, int col) {
+		return board[row][col] == Cons.CHAR_X || board[row][col] == Cons.CHAR_O;
+	}
+
+	public void display() {
 		for (char[] row : board) {
 			for (char c : row) {
 				System.out.print(c);

@@ -23,11 +23,13 @@ public class Cons {
 	public static final String MSG_YOUR_MOVE_PROMPT = "Hi player %s, enter your cell:";
 	public static final String MSG_ENTER_ROW_PROMPT = "Enter row:";
 	public static final String MSG_ENTER_COL_PROMPT = "Enter column:";
+	public static final String MSG_THANKS = "Thanks for Playing Tic-Tac-Toe.";
 
 	public static final String ERR_INVALID_TYPE = "Please enter an integer only:";
 	public static final String ERR_POSITION_TAKEN = "This cell is already filled. Please re enter the cell: ";
 	public static final String ERR_INVALID_MOVE = "Please enter both row and column less that size of the board and greater than 0:";
-
+	public static final String ERR_GAME_STOPPED = "We faced some issue...\n Please restart the game again\n, If issue persist, please contact the Game developer";
+	
 	/**
 	 * Board Layouts
 	 */

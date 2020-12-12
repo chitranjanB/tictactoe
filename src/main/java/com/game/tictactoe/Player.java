@@ -42,10 +42,10 @@ public class Player {
 
 			if (row > 0 && row <= gameBoard.getSizeOfSquare() && col > 0 && col <= gameBoard.getSizeOfSquare()) {
 
-				if (!gameBoard.fillSymbol(row, col, p)) {
+				if (!gameBoard.fillPlayerSymbolAtPosition(row, col, p)) {
 					System.out.println(Cons.ERR_POSITION_TAKEN);
 				} else {
-					gameBoard.fillSymbol(row, col, p);
+					gameBoard.fillPlayerSymbolAtPosition(row, col, p);
 					System.out.println("");
 					System.out.println("player " + playerName + ":");
 					break;
@@ -54,7 +54,7 @@ public class Player {
 				System.out.println(Cons.ERR_INVALID_MOVE);
 			}
 		}
-		gameBoard.printGameBoard();
+		gameBoard.display();
 	}
 
 	public String checkSet(Set s) {
